@@ -1,0 +1,6 @@
+.panel.panel-primary
+    .panel-heading.text-center New Lists
+    .panel-body
+        .row(ng-repeat="list in lists | orderBy:'published':true")
+            .col-md-3 {{list.published | date:'MMM d'}}
+            .col-md-9 {{list.name}}

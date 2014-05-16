@@ -10,4 +10,10 @@ angular.module('app').controller('navBarLoginController', function($scope, $http
         })
 
     }
+
+    $scope.signout = function() {
+        $scope.username = "";
+        $scope.password = "";
+        identity.currentUser = undefined;
+    }
 });

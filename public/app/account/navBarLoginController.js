@@ -1,4 +1,4 @@
-angular.module('app').controller('navBarLoginController', function($scope, $http, identity, notifier, authService) {
+angular.module('app').controller('navBarLoginController', function($scope, $http, identity, notifier, authService, $location) {
     $scope.identity = identity;
     $scope.signin = function (username, password) {
         authService.authenticateUser(username, password).then(function (success) {
@@ -12,8 +12,13 @@ angular.module('app').controller('navBarLoginController', function($scope, $http
     }
 
     $scope.signout = function() {
-        $scope.username = "";
-        $scope.password = "";
-        identity.currentUser = undefined;
+        authService.logoutUser().then(function () {
+            $scope.username = "";
+            $scope.password = "";
+            notifier.notify('You have signed out!');
+            $location.path('/');
+
+        })
+
     }
 });
